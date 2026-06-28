@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Environmental Metrics</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+    
+
+
+
+<div class="page-container">
+
+    <h1>Environmental Metrics</h1>
+
+    <p>Monitor water quality and temperature</p>
+
+    <div class="form-box">
+
+        <input type="number"
+            id="temperature"
+            placeholder="Temperature °C">
+
+        <input type="number"
+            id="humidity"
+            placeholder="Humidity %">
+
+        <input type="number"
+            id="oxygen"
+            placeholder="Oxygen Level mg/L">
+
+        <button onclick="showMetrics()">
+            Show Metrics
+        </button>
+
+    </div>
+
+    <div class="metrics-box">
+
+        <div class="metric-card">
+
+            <h2>Temperature</h2>
+
+            <p id="tempResult">--</p>
+
+        </div>
+
+        <div class="metric-card">
+
+            <h2>Humidity</h2>
+
+            <p id="humidityResult">--</p>
+
+        </div>
+
+        <div class="metric-card">
+
+            <h2>Oxygen Level</h2>
+
+            <p id="oxygenResult">--</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function showMetrics() {
+
+    let temp =
+        document.getElementById('temperature').value;
+
+    let humidity =
+        document.getElementById('humidity').value;
+
+    let oxygen =
+        document.getElementById('oxygen').value;
+
+    document.getElementById('tempResult')
+        .innerHTML = temp + " °C";
+
+    document.getElementById('humidityResult')
+        .innerHTML = humidity + " %";
+
+    document.getElementById('oxygenResult')
+        .innerHTML = oxygen + " mg/L";
+
+
+
+}
+
+</script>
+<div class="bottom-bar">
+
+    <button onclick="goDashboard()">
+
+        ← Back to Dashboard
+
+    </button>
+
+</div>
+
+<script>
+
+function goDashboard() {
+
+    window.location.href = 'dashboard.html';
+
+}
+
+</script>
+
+</body>
+</html>

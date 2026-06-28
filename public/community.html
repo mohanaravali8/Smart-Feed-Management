@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Community & Support</title>
+  <style>
+    body {
+      background: #013a4a;
+      color: white;
+      font-family: Arial, sans-serif;
+      padding: 30px;
+    }
+    h2 {
+      text-align: center;
+      color: #00c8e0;
+    }
+    .support-box {
+      max-width: 800px;
+      margin: 30px auto;
+      background: rgba(255,255,255,0.12);
+      padding: 20px;
+      border-radius: 12px;
+    }
+    .section {
+      margin: 20px 0;
+      padding: 15px;
+      background: rgba(0,0,0,0.2);
+      border-left: 4px solid #00bcd4;
+      border-radius: 6px;
+    }
+    a {
+      color: #00e0ff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      margin-top: 6px;
+    }
+    button {
+      margin-top: 10px;
+      background: #00bcd4;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #0099b8;
+    }
+    #reply-box {
+      background: rgba(0,255,255,0.1);
+      border-left: 4px solid #00bcd4;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 15px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h2>💬 Community & Support</h2>
+  <div class="support-box">
+    <div class="section">
+      <h3>📢 Join the Aqua Community</h3>
+      <p>Connect with other fish farmers and aqua experts. Share insights, tips, and solutions!</p>
+      <p><a href="https://t.me/aquacommunity" target="_blank">👉 Join our Telegram group</a></p>
+    </div>
+
+    <div class="section">
+      <h3>🧠 Knowledge Center</h3>
+      <p>Access FAQs, troubleshooting guides, and maintenance tutorials.</p>
+      <ul>
+        <li><a href="https://www.aquaculturealliance.org" target="_blank">How to reduce feed waste efficiently?</a></li>
+        <li><a href="https://www.fao.org/fishery/en/" target="_blank">Ideal pH range for Tilapia farming</a></li>
+        <li><a href="https://www.fishfarmingexpert.com/" target="_blank">Automating water exchange alerts</a></li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>📨 Contact Support</h3>
+      <p>Have a question or technical issue? Send us a message below:</p>
+      <form id="supportForm">
+        <label>Your Name:</label>
+        <input type="text" id="name" placeholder="Enter your name" required>
+        <label>Message:</label>
+        <textarea id="message" rows="4" placeholder="Describe your issue..." required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+
+      <!-- ✅ Dynamic reply box -->
+      <div id="reply-box"></div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("supportForm");
+    const replyBox = document.getElementById("reply-box");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const message = document.getElementById("message").value.toLowerCase();
+      let reply = "";
+
+      // 🧠 Simple keyword-based support system
+      if (message.includes("feed")) {
+        reply = `
+          <h4>🐟 Feed Management Help</h4>
+          <p>To optimize your fish feed usage, check these resources:</p>
+          <ul>
+            <li><a href="https://www.facebook.com/livestockservicescooperativesociety/posts/tips-on-calculating-the-quantity-of-fish-feed-per-dayto-calculate-the-amount-of-/1405856469802798/" target="_blank">Reducing Feed Waste in Aquaculture</a></li>
+            <li><a href="https://www.oftri.org/courses/aqua-clinic-and-aquapreneur-development-program/" target="_blank">AquaFeed Resource Center</a></li>
+          </ul>
+        `;
+      } else if (message.includes("ph") || message.includes("water quality")) {
+        reply = `
+          <h4>💧 Water Quality Support</h4>
+          <p>Here are some guides for managing pH and water parameters:</p>
+          <ul>
+            <li><a href="https://extension.rwfm.tamu.edu/wp-content/uploads/sites/8/2013/09/SRAC-Publication-No.-4604-Managing-High-pH-in-Freshwater-Ponds.pdf" target="_blank">Managing pH in Aquaculture Ponds</a></li>
+            <li><a href="https://chemtech-us.com/importance-water-quality-fish-shrimp-farming/" target="_blank">Understanding Water Quality</a></li>
+          </ul>
+        `;
+      } else if (message.includes("disease") || message.includes("infection")) {
+        reply = `
+          <h4>🧫 Fish Disease Guidance</h4>
+          <p>Check the following for diagnosis and prevention:</p>
+          <ul>
+            <li><a href="https://www.lkouniv.ac.in/site/writereaddata/siteContent/202004061939435276sptrivedi_FISH_DISEASES.pdf" target="_blank">Fish Pathology & Treatment</a></li>
+            <li><a href="https://www.fao.org/in-action/aquatic-health-management-biosecurity/en" target="_blank">FAO Aquaculture Health Resources</a></li>
+          </ul>
+        `;
+      } else {
+        reply = `
+          <h4>🤝 Thank You for Reaching Out!</h4>
+          <p>Our team will review your issue and respond shortly. Meanwhile, you can explore these general help links:</p>
+          <ul>
+            <li><a href="https://www.aquaculturealliance.org" target="_blank">Aquaculture Alliance</a></li>
+            <li><a href="https://www.fao.org/fishery/en/" target="_blank">FAO Fisheries Division</a></li>
+          </ul>
+        `;
+      }
+
+      replyBox.innerHTML = reply;
+      replyBox.style.display = "block";
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Water Change Guide</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/css/styles.css">
+<style>
+  body {
+    color: white;
+    background: #013a4a;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  .box {
+    max-width: 800px;
+    margin: auto;
+    background: rgba(255,255,255,0.10);
+    padding: 20px;
+    border-radius: 12px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  td, th {
+    padding: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.25);
+  }
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 6px;
+    border: none;
+    font-size: 16px;
+  }
+  button {
+    background: #00bcd4;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  button:hover {
+    background: #0099b8;
+  }
+  #result {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(0,255,255,0.1);
+    border-left: 4px solid #00bcd4;
+    border-radius: 8px;
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="box">
+  <h2>💧 Monthly Water Change Guide</h2>
+  <p>Follow this schedule to maintain water quality and fish health.</p>
+
+  <table>
+    <tr><th>Month</th><th>Water Change</th></tr>
+    <tr><td>January - February</td><td>Change 25% every 15 days</td></tr>
+    <tr><td>March - May (Summer)</td><td>Change 30–40% every 10 days</td></tr>
+    <tr><td>June - September (Rainy)</td><td>Change 15–20% every 20 days</td></tr>
+    <tr><td>October - December</td><td>Change 20% every 15 days</td></tr>
+  </table>
+
+  <hr style="margin:25px 0; border-color: rgba(255,255,255,0.2);">
+
+  <h3>🧪 Check Your Pond's pH</h3>
+  <p>Enter your pond water pH value below to see if a water change is recommended:</p>
+
+  <input type="number" id="phValue" step="0.1" placeholder="Enter pH value (e.g., 6.5)">
+  <button onclick="checkWaterChange()">Check Recommendation</button>
+
+  <div id="result"></div>
+</div>
+
+<script>
+  function checkWaterChange() {
+    const ph = parseFloat(document.getElementById("phValue").value);
+    const resultBox = document.getElementById("result");
+
+    if (isNaN(ph)) {
+      resultBox.style.display = "block";
+      resultBox.innerHTML = "<p>⚠️ Please enter a valid pH value.</p>";
+      return;
+    }
+
+    let message = "";
+    if (ph < 6.5) {
+      message = `
+        <h4>⚠️ Low pH Detected (${ph})</h4>
+        <p>Your water is too acidic. A <b>partial water change</b> (25–30%) is recommended.</p>
+        <p>Check this guide for more info:</p>
+        <ul>
+          <li><a href="https://www.aquaculturealliance.org/advocate/managing-ph-in-ponds/" target="_blank">Managing pH in Aquaculture Ponds</a></li>
+          <li><a href="https://www.fao.org/fishery/en/" target="_blank">FAO Water Quality Resources</a></li>
+        </ul>
+      `;
+    } else if (ph > 8.5) {
+      message = `
+        <h4>⚠️ High pH Detected (${ph})</h4>
+        <p>Your water is too alkaline. <b>Immediate water change</b> (30–40%) is recommended.</p>
+        <p>Read more on balancing pH:</p>
+        <ul>
+          <li><a href="https://thefishsite.com/articles/water-quality-importance-in-aquaculture" target="_blank">Water Quality in Aquaculture</a></li>
+        </ul>
+      `;
+    } else {
+      message = `
+        <h4>✅ Ideal pH Level (${ph})</h4>
+        <p>Your pond water is in a healthy range (6.5–8.5). No water change is required now.</p>
+        <p>Keep monitoring weekly to ensure stability.</p>
+      `;
+    }
+
+    resultBox.innerHTML = message;
+    resultBox.style.display = "block";
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feed Calculation</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div class="page-container">
+
+    <h1>Feed Calculation</h1>
+
+    <p>Calculate optimal feed for fish and shrimp</p>
+
+    <div class="form-box">
+
+        <input type="text" id="fishType"
+            placeholder="Enter Fish Type">
+
+        <input type="number" id="fishWeight"
+            placeholder="Fish Weight (kg)">
+
+        <input type="number" id="feedRate"
+            placeholder="Feed Rate (%)">
+
+        <button onclick="calculateFeed()">
+            Calculate Feed
+        </button>
+
+        <h2 id="result"></h2>
+
+    </div>
+
+</div>
+
+<script>
+
+function calculateFeed() {
+
+    let weight =
+        document.getElementById('fishWeight').value;
+
+    let rate =
+        document.getElementById('feedRate').value;
+
+    let result = (weight * rate) / 100;
+
+    document.getElementById('result').innerHTML =
+        "Required Feed: " + result + " kg";
+
+}
+
+</script>
+<div class="bottom-bar">
+
+    <button onclick="goDashboard()">
+
+        ← Back to Dashboard
+
+    </button>
+
+</div>
+
+<script>
+
+function goDashboard() {
+
+    window.location.href = 'dashboard.html';
+
+}
+
+</script>
+
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Fish & Shrimp Feed Calculation</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f9ff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .page-container {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .form-box {
+            width: 350px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+        }
+
+        input,
+        select {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+        }
+
+        button {
+            padding: 12px 20px;
+            background: #0077ff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background: #005ecc;
+        }
+
+        #result {
+            margin-top: 20px;
+            color: green;
+        }
+
+        .bottom-bar {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="page-container">
+
+    <h1>Feed Calculation</h1>
+
+    <p>Calculate feed for Fish and Shrimp</p>
+
+    <div class="form-box">
+
+        <!-- Select Fish or Shrimp -->
+        <select id="animalType">
+
+            <option value="">Select Type</option>
+
+            <option value="fish">Fish</option>
+
+            <option value="shrimp">Shrimp</option>
+
+        </select>
+
+        <!-- Weight -->
+        <input type="number"
+            id="weight"
+            placeholder="Enter Total Weight (kg)">
+
+        <!-- Feed Rate -->
+        <input type="number"
+            id="feedRate"
+            placeholder="Enter Feed Rate (%)">
+
+        <!-- Button -->
+        <button onclick="calculateFeed()">
+
+            Calculate Feed
+
+        </button>
+
+        <!-- Result -->
+        <h2 id="result"></h2>
+
+    </div>
+
+</div>
+
+<script>
+
+function calculateFeed() {
+
+    let animal =
+        document.getElementById('animalType').value;
+
+    let weight =
+        document.getElementById('weight').value;
+
+    let rate =
+        document.getElementById('feedRate').value;
+
+    if (animal === "" ||
+        weight === "" ||
+        rate === "") {
+
+        alert("Please fill all fields");
+
+        return;
+    }
+
+    let result =
+        (weight * rate) / 100;
+
+    document.getElementById('result').innerHTML =
+        `
+        ${animal.toUpperCase()} Feed Required:
+        <br>
+        <b>${result.toFixed(2)} kg/day</b>
+        `;
+
+}
+
+function goDashboard() {
+
+    window.location.href =
+        'dashboard.html';
+
+}
+
+</script>
+
+<div class="bottom-bar">
+
+    <button onclick="goDashboard()">
+
+        ← Back to Dashboard
+
+    </button>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feedback</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f7fb;
+}
+
+.container{
+    width:70%;
+    margin:30px auto;
+    background:#fff;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+
+h2{
+    text-align:center;
+    color:#0077b6;
+}
+
+label{
+    font-weight:bold;
+}
+
+input, textarea, select{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    margin-bottom:15px;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+button{
+    background:#0077b6;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#005f8d;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+table, th, td{
+    border:1px solid #ccc;
+}
+
+th{
+    background:#0077b6;
+    color:white;
+}
+
+th, td{
+    padding:10px;
+    text-align:center;
+}
+
+.back{
+    display:inline-block;
+    margin-top:20px;
+    text-decoration:none;
+    color:#0077b6;
+    font-weight:bold;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h2>Feedback Form</h2>
+
+<form onsubmit="addFeedback(); return false;">
+
+<label>Name</label>
+<input type="text" id="name" required>
+
+<label>Email</label>
+<input type="email" id="email">
+
+<label>Rating</label>
+<select id="rating">
+    <option>⭐</option>
+    <option>⭐⭐</option>
+    <option>⭐⭐⭐</option>
+    <option selected>⭐⭐⭐⭐</option>
+    <option>⭐⭐⭐⭐⭐</option>
+</select>
+
+<label>Feedback</label>
+<textarea id="message" rows="4" required></textarea>
+
+<button type="submit">Submit Feedback</button>
+
+</form>
+
+<h3>Feedback Records</h3>
+
+<table id="feedbackTable">
+<tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Rating</th>
+    <th>Feedback</th>
+</tr>
+</table>
+
+<a href="index.html" class="back">← Back to Dashboard</a>
+
+</div>
+
+<script>
+function addFeedback(){
+
+    let name=document.getElementById("name").value;
+    let email=document.getElementById("email").value;
+    let rating=document.getElementById("rating").value;
+    let message=document.getElementById("message").value;
+
+    let table=document.getElementById("feedbackTable");
+
+    let row=table.insertRow(-1);
+
+    row.insertCell(0).innerHTML=name;
+    row.insertCell(1).innerHTML=email;
+    row.insertCell(2).innerHTML=rating;
+    row.insertCell(3).innerHTML=message;
+
+    document.getElementById("name").value="";
+    document.getElementById("email").value="";
+    document.getElementById("rating").selectedIndex=3;
+    document.getElementById("message").value="";
+}
+</script>
+
+</body>
+</html>

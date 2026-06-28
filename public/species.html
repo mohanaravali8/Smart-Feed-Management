@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Species Gallery</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="page-container">
+
+    <h1>Species Gallery & Identification</h1>
+
+    <p>
+        Identify fish and shrimp species manually
+    </p>
+
+    <!-- Search -->
+
+    <input type="text"
+        id="searchBox"
+        placeholder="Search Species..."
+        onkeyup="searchSpecies()"
+        class="search-box">
+
+    <!-- Species Grid -->
+
+    <div class="species-grid"
+        id="speciesGrid">
+
+        <!-- Tilapia -->
+
+        <div class="species-card"
+                   "
+    onclick="window.location.href='tilapia.html'">
+            <img src="images/tilapia.jpg">
+
+            <h2>Tilapia</h2>
+
+            <p>
+                Freshwater fish commonly used in aquaculture.
+            </p>
+
+        </div>
+
+        <!-- Catfish -->
+
+        
+        <div class="species-card"
+    onclick="window.location.href='catfish.html'">
+
+            <img src="images/catfish.jpg">
+
+            <h2>Catfish</h2>
+
+            <p>
+                Popular fast-growing aquaculture species.
+            </p>
+
+        </div>
+
+        <!-- Shrimp -->
+
+    
+        <div class="species-card"
+    onclick="window.location.href='shrimp.html'">
+
+            <img src="images/shrimp.jpg">
+
+            <h2>Shrimp</h2>
+
+            <p>
+                High market value seafood species.
+            </p>
+
+        </div>
+
+        <!-- Rohu -->
+
+        <div class="species-card"
+    onclick="window.location.href='rohu.html'">
+
+    <img src="images/rohu.jpg">
+
+    <h2>Rohu</h2>
+
+    <p>
+        Indian major carp species.
+    </p>
+
+</div>
+<!-- Bottom Button -->
+<center>
+<div class="bottom-bar">
+
+    <button onclick="goDashboard()">
+
+        ← Back to Dashboard
+
+    </button>
+
+</div>
+</center>
+
+<script>
+
+function goDashboard() {
+
+    window.location.href =
+        'dashboard.html';
+
+}
+
+// Search Function
+
+function searchSpecies() {
+
+    let input =
+        document.getElementById('searchBox')
+        .value.toLowerCase();
+
+    let cards =
+        document.getElementsByClassName(
+            'species-card'
+        );
+
+    for(let i = 0; i < cards.length; i++) {
+
+        let title =
+            cards[i]
+            .getElementsByTagName('h2')[0]
+            .innerText
+            .toLowerCase();
+
+        if(title.includes(input)) {
+
+            cards[i].style.display = '';
+
+        } else {
+
+            cards[i].style.display = 'none';
+
+        }
+
+    }
+
+}
+
+</script>
+
+</body>
+
+</html>

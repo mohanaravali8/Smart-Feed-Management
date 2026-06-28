@@ -1,0 +1,186 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feed Stock Records</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="main-container">
+
+<h1>Feed Stock Records</h1>
+
+<form>
+
+<label>Date</label><br>
+<input type="date" required><br><br>
+
+<label>Feed Type</label><br>
+<select required>
+    <option>Starter Feed</option>
+    <option>Grower Feed</option>
+    <option>Finisher Feed</option>
+    <option>Shrimp Feed</option>
+</select><br><br>
+
+<label>Number of Feed Packets</label><br>
+<input type="number" placeholder="Enter packets" required><br><br>
+
+<button type="submit">Save Record</button>
+
+</form>
+
+<br><br>
+
+<table border="1" cellpadding="10">
+<tr>
+    <th>Date</th>
+    <th>Feed Type</th>
+    <th>Packets</th>
+</tr>
+
+<tr>
+    <td>27-06-2026</td>
+    <td>Starter Feed</td>
+    <td>25</td>
+</tr>
+
+</table>
+
+<br>
+
+<a href="index.html">← Back to Dashboard</a>
+
+</div>
+
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feed Stock Records</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f7fb;
+}
+
+.container{
+    width:70%;
+    margin:30px auto;
+    background:#fff;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,.1);
+}
+
+input,select{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+}
+
+button{
+    background:#007bff;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    cursor:pointer;
+    border-radius:5px;
+}
+
+button:hover{
+    background:#0056b3;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+table,th,td{
+    border:1px solid #ccc;
+}
+
+th,td{
+    padding:10px;
+    text-align:center;
+}
+
+a{
+    text-decoration:none;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h2>Feed Stock Records</h2>
+
+<label>Date</label>
+<input type="date" id="date">
+
+<label>Feed Type</label>
+<select id="feedType">
+    <option>Starter Feed</option>
+    <option>Grower Feed</option>
+    <option>Finisher Feed</option>
+    <option>Shrimp Feed</option>
+</select>
+
+<label>Number of Feed Packets</label>
+<input type="number" id="packets" placeholder="Enter packets">
+
+<button onclick="addRecord()">Save Record</button>
+
+<table id="stockTable">
+    <tr>
+        <th>Date</th>
+        <th>Feed Type</th>
+        <th>Packets</th>
+    </tr>
+</table>
+
+<br>
+
+<a href="index.html">← Back to Dashboard</a>
+
+</div>
+
+<script>
+function addRecord(){
+
+    let date=document.getElementById("date").value;
+    let feed=document.getElementById("feedType").value;
+    let packets=document.getElementById("packets").value;
+
+    if(date=="" || packets==""){
+        alert("Please fill all fields");
+        return;
+    }
+
+    let table=document.getElementById("stockTable");
+
+    let row=table.insertRow(-1);
+
+    row.insertCell(0).innerHTML=date;
+    row.insertCell(1).innerHTML=feed;
+    row.insertCell(2).innerHTML=packets;
+
+    // Clear form
+    document.getElementById("date").value="";
+    document.getElementById("feedType").selectedIndex=0;
+    document.getElementById("packets").value="";
+}
+</script>
+
+</body>
+</html>

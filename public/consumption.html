@@ -1,0 +1,446 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Feed Consumption Trends</title>
+
+    <!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f5f9ff;
+        margin: 0;
+        padding: 20px;
+    }
+
+    .chart-container {
+
+        width: 90%;
+        max-width: 1000px;
+        margin: auto;
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+
+    }
+
+    h2 {
+        margin-bottom: 5px;
+        color: #222;
+    }
+
+    p {
+        color: gray;
+        margin-top: 0;
+    }
+</style>
+
+</head>
+
+<body>
+
+    <div class="chart-container">
+
+        <h2>Daily Feed Intake Analysis</h2>
+
+        <p>
+            Monitor feeding patterns and optimize feed distribution
+        </p>
+
+        <canvas id="feedChart"></canvas>
+
+    </div>
+
+    <script>
+
+        const ctx =
+            document.getElementById('feedChart');
+
+        new Chart(ctx, {
+
+            type: 'line',
+
+            data: {
+
+                labels: [
+                    '10',
+                    '23',
+                    '45',
+                    '56',
+                    '70',
+                    '72',
+                    '83'
+                ],
+
+                datasets: [
+
+                    {
+                        label: 'Daily Feed Intake (kg)',
+
+                        data: [
+                            10,
+                            22,
+                            34,
+                            37,
+                            55,
+                            63,
+                            70
+                        ],
+
+                        borderColor: '#5f6fff',
+
+                        backgroundColor:
+                            'rgba(95,111,255,0.15)',
+
+                        fill: true,
+
+                        tension: 0.4,
+
+                        borderWidth: 3,
+
+                        pointRadius: 4
+                    },
+
+                    {
+                        label: 'Optimal Feed Range (%)',
+
+                        data: [
+                            9,
+                            21,
+                            32,
+                            35,
+                            52,
+                            60,
+                            66
+                        ],
+
+                        borderColor: '#9ca3af',
+
+                        borderDash: [5, 5],
+
+                        fill: false,
+
+                        tension: 0.4,
+
+                        borderWidth: 2,
+
+                        pointRadius: 3
+                    }
+
+                ]
+            },
+
+            options: {
+
+                responsive: true,
+
+                plugins: {
+
+                    legend: {
+                        position: 'bottom'
+                    }
+
+                },
+
+                scales: {
+
+                    y: {
+
+                        beginAtZero: true,
+
+                        title: {
+
+                            display: true,
+
+                            text: 'Feed Intake'
+
+                        }
+
+                    },
+
+                    x: {
+
+                        title: {
+
+                            display: true,
+
+                            text: 'Days of Culture'
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feed Consumption Trends</title>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f9ff;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .chart-container {
+            width: 90%;
+            max-width: 1000px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-bottom: 5px;
+            color: #222;
+        }
+
+        p {
+            color: gray;
+            margin-top: 0;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 20px;
+            background: #5f6fff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background: #4a58e6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="chart-container">
+
+        <h2>Daily Feed Intake Analysis</h2>
+
+        <p>
+            Monitor feeding patterns and optimize feed distribution
+        </p>
+
+        <canvas id="feedChart"></canvas>
+
+        <center>
+            <button onclick="downloadReport()">
+                Download Report
+            </button><br>
+            <div class="bottom-bar">
+
+                <button onclick="goDashboard()">
+
+                    ← Back to Dashboard
+
+                </button>
+
+            </div>
+
+        </center>
+
+        <script>
+
+            const feedChartCtx = document.getElementById('feedChart');
+
+            const feedChart = new Chart(feedChartCtx, {
+
+                type: 'line',
+
+                data: {
+
+                    labels: [
+                        '10',
+                        '23',
+                        '45',
+                        '56',
+                        '70',
+                        '72',
+                        '83'
+                    ],
+
+                    datasets: [
+
+                        {
+                            label: 'Daily Feed Intake (kg)',
+
+                            data: [
+                                10,
+                                22,
+                                34,
+                                37,
+                                55,
+                                63,
+                                70
+                            ],
+
+                            borderColor: '#5f6fff',
+
+                            backgroundColor:
+                                'rgba(95,111,255,0.15)',
+
+                            fill: true,
+
+                            tension: 0.4,
+
+                            borderWidth: 3,
+
+                            pointRadius: 5
+                        },
+
+                        {
+                            label: 'Optimal Feed Range (%)',
+
+                            data: [
+                                9,
+                                21,
+                                32,
+                                35,
+                                52,
+                                60,
+                                66
+                            ],
+
+                            borderColor: '#9ca3af',
+
+                            borderDash: [5, 5],
+
+                            fill: false,
+
+                            tension: 0.4,
+
+                            borderWidth: 2,
+
+                            pointRadius: 4
+                        }
+
+                    ]
+                },
+
+                options: {
+
+                    responsive: true,
+
+                    plugins: {
+
+                        legend: {
+                            position: 'bottom'
+                        }
+
+                    },
+
+                    scales: {
+
+                        y: {
+
+                            beginAtZero: true,
+
+                            title: {
+
+                                display: true,
+
+                                text: 'Feed Intake'
+
+                            }
+
+                        },
+
+                        x: {
+
+                            title: {
+
+                                display: true,
+
+                                text: 'Days of Culture'
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            });
+
+            function downloadReport() {
+
+                const { jsPDF } = window.jspdf;
+
+                const doc = new jsPDF();
+
+                doc.setFontSize(18);
+                doc.text("Feed Consumption Report", 20, 20);
+
+                doc.setFontSize(12);
+                doc.text("Generated by Smart Feed Management System", 20, 30);
+
+                const chartImage = feedChart.toBase64Image();
+
+                doc.addImage(
+                    chartImage,
+                    'PNG',
+                    15,
+                    40,
+                    180,
+                    90
+                );
+
+                doc.text("Feed Intake Summary", 20, 145);
+
+                doc.text("Day 10 : 10 kg", 20, 155);
+                doc.text("Day 23 : 22 kg", 20, 165);
+                doc.text("Day 45 : 34 kg", 20, 175);
+                doc.text("Day 56 : 37 kg", 20, 185);
+                doc.text("Day 70 : 55 kg", 20, 195);
+                doc.text("Day 72 : 63 kg", 20, 205);
+                doc.text("Day 83 : 70 kg", 20, 215);
+
+                doc.save("Feed_Consumption_Report.pdf");
+            }
+
+
+        </script>
+
+
+    </div>
+
+</body>
+
+</html>
